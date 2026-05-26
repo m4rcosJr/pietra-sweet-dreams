@@ -21,7 +21,7 @@ function renderProdutos() {
   if (!grid) return;
 
   grid.innerHTML = produtos.map((p) => {
-    const msg = encodeURIComponent(`Olá! Tenho interesse no produto ${p.nome} da Pietra Doces.`);
+    const msg = encodeURIComponent(`Olá! Tenho interesse no produto ${p.nome} da Pietrà Doces.`);
     const link = `https://wa.me/${TELEFONE}?text=${msg}`;
     return `
       <article class="card">
