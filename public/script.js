@@ -7,7 +7,7 @@ const produtos = [
   {
     nome: "Brownie Tradicional",
     desc: "Brownie tradicional com gotas de chocolate, casquinha crocante e centro úmido e cremoso.",
-    preco: "R$ 12,00",
+    preco: "R$ 8,00",
     unidade: "unidade",
     img: "/imgs/foto-brownie02.jpeg"
   }
