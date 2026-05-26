@@ -1,26 +1,29 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Pietra Doces — Confeitaria Artesanal Premium" },
+      {
+        name: "description",
+        content:
+          "Doces artesanais sofisticados — brownies, brigadeiros gourmet, bolos no pote e mais. Encomende pelo WhatsApp.",
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Index() {
+  // O site é HTML/CSS/JS puro em /public — redireciona para servi-lo
+  useEffect(() => {
+    window.location.replace("/site.html");
+  }, []);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div style={{ minHeight: "100vh", display: "grid", placeItems: "center", background: "#F8F3ED", fontFamily: "Georgia, serif", color: "#3B2416" }}>
+      <p>Carregando Pietra Doces…</p>
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
