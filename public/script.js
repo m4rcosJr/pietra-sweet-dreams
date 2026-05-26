@@ -5,64 +5,15 @@
 // ----- Catálogo de produtos -----
 const produtos = [
   {
-    nome: "Brownie",
-    desc: "Chocolate belga 70%, casquinha crocante e centro úmido e cremoso.",
+    nome: "Brownie Tradicional",
+    desc: "Brownie tradicional com gotas de chocolate, casquinha crocante e centro úmido e cremoso.",
     preco: "R$ 12,00",
     unidade: "unidade",
-    img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800&q=80"
-  },
-  {
-    nome: "Brigadeiro Gourmet",
-    desc: "Receita artesanal com cacau nobre e finalização em granulado belga.",
-    preco: "R$ 5,00",
-    unidade: "unidade",
-    img: "https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=800&q=80"
-  },
-  {
-    nome: "Banoffee",
-    desc: "Banana caramelizada, doce de leite artesanal e chantilly fresco.",
-    preco: "R$ 18,00",
-    unidade: "porção",
-    img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80"
-  },
-  {
-    nome: "Copo da Felicidade",
-    desc: "Camadas de brownie, brigadeiro e ganache em copo individual.",
-    preco: "R$ 22,00",
-    unidade: "copo 200ml",
-    img: "https://images.unsplash.com/photo-1551529834-525807d6b4f3?w=800&q=80"
-  },
-  {
-    nome: "Bolo no Pote",
-    desc: "Massa fofinha, recheio cremoso e cobertura especial em camadas.",
-    preco: "R$ 16,00",
-    unidade: "pote 250ml",
-    img: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&q=80"
-  },
-  {
-    nome: "Cookie Recheado",
-    desc: "Massa amanteigada com gotas de chocolate e recheio surpresa.",
-    preco: "R$ 14,00",
-    unidade: "unidade",
-    img: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800&q=80"
-  },
-  {
-    nome: "Palha Italiana",
-    desc: "Brigadeiro firme com biscoito crocante e açúcar de confeiteiro.",
-    preco: "R$ 6,00",
-    unidade: "unidade",
-    img: "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=800&q=80"
-  },
-  {
-    nome: "Caixa Premium",
-    desc: "Seleção especial dos nossos doces em embalagem sofisticada para presentear.",
-    preco: "R$ 89,00",
-    unidade: "caixa c/ 12",
-    img: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=800&q=80"
+    img: "/imgs/foto-brownie02.jpeg"
   }
 ];
 
-const TELEFONE = "5511999999999";
+const TELEFONE = "5519992325682";
 
 // ----- Renderiza catálogo -----
 function renderProdutos() {
@@ -116,7 +67,6 @@ const revealObserver = new IntersectionObserver(
   },
   { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
 );
-
 // ----- Init -----
 document.addEventListener("DOMContentLoaded", () => {
   renderProdutos();
@@ -126,4 +76,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // Menu hamburguer
+  const menuBtn = document.getElementById("menuBtn");
+  const nav = document.querySelector(".nav");
+
+  menuBtn.addEventListener("click", () => {
+    nav.classList.toggle("open");
+  });
+
+  nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+    });
+  });
+
+  // fecha ao clicar fora do menu
+  nav.addEventListener("click", (e) => {
+    if (e.target === nav) nav.classList.remove("open");
+  });
 });
