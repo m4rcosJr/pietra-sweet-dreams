@@ -120,12 +120,12 @@ em { font-style: italic; color: var(--gold); font-weight: 500; }
 
 .logo { display: flex; align-items: center; gap: 10px; }
 .logo-img {
-  height: 56px;
+  height: 88px;
   width: auto;
   display: block;
-  transition: transform 0.35s ease;
+  transition: transform 0.35s ease, height 0.35s ease;
 }
-#header.scrolled .logo-img { height: 48px; }
+#header.scrolled .logo-img { height: 70px; }
 .logo:hover .logo-img { transform: scale(1.04); }
 .logo-img-footer { height: 80px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3)); }
 
