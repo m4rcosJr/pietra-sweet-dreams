@@ -6,8 +6,8 @@
 :root {
   --brown: #3B2416;
   --brown-soft: #5a3a25;
-  --gold: #D4AF37;
-  --gold-light: #e8c96a;
+  --gold: #B8893A;
+  --gold-light: #D9B362;
   --cream: #F8F3ED;
   --cream-dark: #efe6d8;
   --white: #ffffff;
@@ -119,24 +119,15 @@ em { font-style: italic; color: var(--gold); font-weight: 500; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 
 .logo { display: flex; align-items: center; gap: 10px; }
-.logo-mark {
-  width: 38px; height: 38px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  color: var(--brown);
-  display: grid; place-items: center;
-  font-family: var(--serif);
-  font-size: 1.3rem;
-  font-weight: 700;
-  box-shadow: var(--shadow-gold);
+.logo-img {
+  height: 56px;
+  width: auto;
+  display: block;
+  transition: transform 0.35s ease;
 }
-.logo-text {
-  font-family: var(--serif);
-  font-size: 1.4rem;
-  color: var(--brown);
-  font-weight: 600;
-}
-.logo-text em { color: var(--gold); }
+#header.scrolled .logo-img { height: 48px; }
+.logo:hover .logo-img { transform: scale(1.04); }
+.logo-img-footer { height: 80px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3)); }
 
 .nav { display: flex; gap: 32px; }
 .nav a {
