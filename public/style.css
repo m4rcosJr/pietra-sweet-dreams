@@ -166,7 +166,7 @@ em { font-style: italic; color: var(--gold); font-weight: 500; }
   position: absolute; inset: 0;
   background:
     linear-gradient(135deg, rgba(59,36,22,0.78), rgba(59,36,22,0.55)),
-    url('https://images.unsplash.com/photo-1551024601-bec78aea704b?w=1800&q=80') center/cover;
+    url(imgs/bg-brownie.png) center/cover;
   z-index: 0;
 }
 .hero-bg::after {
