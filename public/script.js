@@ -17,7 +17,8 @@ const produtos = [
     preco: "R$ 8,00",
     unidade: "unidade",
     medias: [
-      { type: "image", src: "/imgs/foto-brownie02.jpeg", alt: "Brownie Tradicional" }
+      { type: "image", src: "/imgs/foto-brownie02.jpeg", alt: "Brownie Tradicional" },
+      { type: "image", src: "/imgs/foto-brownie01.jpeg", alt: "Brownie Tradicional" }
     ]
   },
 
@@ -29,7 +30,7 @@ const produtos = [
     medias: [
       { type: "image", src: "/imgs/foto-brownie-doceleite01.jpeg", alt: "Brownie Doce de Leite" },
       { type: "image", src: "/imgs/foto-brownie-doceleite02.jpeg", alt: "Brownie Doce de Leite" },
-      { type: "video", src: "imgs/video-brownie-doceleite.mp4", thumb:"Video Doce de Leitee"}
+      { type: "video", src: "imgs/video-brownie-doceleite.mp4", thumb:"/imgs/thumbdoceleite.png"}
     ]
   }
 ];
@@ -279,7 +280,7 @@ function renderProdutos() {
 
   grid.innerHTML = produtos.map((p, i) => {
     const cardId = `card-${i}`;
-    const msg = encodeURIComponent(`Olá! Tenho interesse no produto ${p.nome} da Pietra Doces.`);
+    const msg = encodeURIComponent(`Olá! Tenho interesse no ${p.nome} da Pietra Doces.`);
     const link = `https://wa.me/${TELEFONE}?text=${msg}`;
 
     return `
