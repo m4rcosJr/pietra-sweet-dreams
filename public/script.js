@@ -13,11 +13,23 @@
 const produtos = [
   {
     nome: "Brownie Tradicional",
-    desc: "Chocolate belga 70%, casquinha crocante e centro úmido e cremoso.",
-    preco: "R$ 12,00",
+    desc: "Chocolate, casquinha crocante e centro úmido e cremoso.",
+    preco: "R$ 8,00",
     unidade: "unidade",
     medias: [
       { type: "image", src: "/imgs/foto-brownie02.jpeg", alt: "Brownie Tradicional" }
+    ]
+  },
+
+  {
+    nome: "Brownie de Doce de Leite",
+    desc: "Por fora, uma casquinha delicadamente crocante. Por dentro, um recheio de doce de leite cremoso e cheio de sabor",
+    preco: "R$ 10,00",
+    unidade: "unidade",
+    medias: [
+      { type: "image", src: "/imgs/foto-brownie-doceleite01.jpeg", alt: "Brownie Doce de Leite" },
+      { type: "image", src: "/imgs/foto-brownie-doceleite02.jpeg", alt: "Brownie Doce de Leite" },
+      { type: "video", src: "imgs/video-brownie-doceleite.mp4", thumb:"Video Doce de Leitee"}
     ]
   }
 ];
