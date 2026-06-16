@@ -24,7 +24,7 @@ const produtos = [
 
   {
     nome: "Brownie de Doce de Leite",
-    desc: "Por fora, uma casquinha delicadamente crocante. Por dentro, um recheio de doce de leite cremoso e cheio de sabor",
+    desc: "Por fora, uma casquinha delicadamente crocante. Por dentro, um recheio de doce de leite cremoso e cheio de sabor.",
     preco: "R$ 10,00",
     unidade: "unidade",
     medias: [
