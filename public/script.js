@@ -18,7 +18,7 @@ const produtos = [
     unidade: "unidade",
     medias: [
       { type: "image", src: "/imgs/foto-brownie02.jpeg", alt: "Brownie Tradicional" },
-      { type: "image", src: "/imgs/foto-brownie01.jpeg", alt: "Brownie Tradicional" }
+      { type: "image", src: "/imgs/foto-brownie01.png", alt: "Brownie Tradicional" }
     ]
   },
 
