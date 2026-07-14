@@ -28,6 +28,68 @@ const produtos = [
     ]
   },
 
+   {
+    nome: "Brownie Tradicional",
+    categoria: "Doces Prontos",
+    desc: "Chocolate, casquinha crocante e centro úmido e cremoso.",
+    preco: "R$ 8,00",
+    unidade: "unidade",
+    medias: [
+      { type: "image", src: "/imgs/foto-brownie02.jpeg", alt: "Brownie Tradicional" },
+      { type: "image", src: "/imgs/foto-brownie01.png", alt: "Brownie Tradicional" }
+    ]
+  },
+
+   {
+    nome: "Brownie Tradicional",
+    categoria: "Doces Prontos",
+    desc: "Chocolate, casquinha crocante e centro úmido e cremoso.",
+    preco: "R$ 8,00",
+    unidade: "unidade",
+    medias: [
+      { type: "image", src: "/imgs/foto-brownie02.jpeg", alt: "Brownie Tradicional" },
+      { type: "image", src: "/imgs/foto-brownie01.png", alt: "Brownie Tradicional" }
+    ]
+  },
+
+   {
+    nome: "Brownie Tradicional",
+    categoria: "Doces Prontos",
+    desc: "Chocolate, casquinha crocante e centro úmido e cremoso.",
+    preco: "R$ 8,00",
+    unidade: "unidade",
+    medias: [
+      { type: "image", src: "/imgs/foto-brownie02.jpeg", alt: "Brownie Tradicional" },
+      { type: "image", src: "/imgs/foto-brownie01.png", alt: "Brownie Tradicional" }
+    ]
+  },
+
+
+   {
+    nome: "Brownie Tradicional",
+    categoria: "Doces Prontos",
+    desc: "Chocolate, casquinha crocante e centro úmido e cremoso.",
+    preco: "R$ 8,00",
+    unidade: "unidade",
+    medias: [
+      { type: "image", src: "/imgs/foto-brownie02.jpeg", alt: "Brownie Tradicional" },
+      { type: "image", src: "/imgs/foto-brownie01.png", alt: "Brownie Tradicional" }
+    ]
+  },
+
+
+   {
+    nome: "Brownie Tradicional",
+    categoria: "Doces Prontos",
+    desc: "Chocolate, casquinha crocante e centro úmido e cremoso.",
+    preco: "R$ 8,00",
+    unidade: "unidade",
+    medias: [
+      { type: "image", src: "/imgs/foto-brownie02.jpeg", alt: "Brownie Tradicional" },
+      { type: "image", src: "/imgs/foto-brownie01.png", alt: "Brownie Tradicional" }
+    ]
+  },
+
   {
     nome: "Brownie de Doce de Leite",
     categoria: "Doces Prontos",
