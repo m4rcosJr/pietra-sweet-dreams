@@ -48,8 +48,8 @@ const produtos = [
     preco: "R$ 14,00",
     unidade: "unidade",
     medias: [
-      { type: "image", src: "/imgs/foto-bolo-laranja.png", alt: "Bolo de Laranja" }
-      { type: "image", src: "/imgs/foto-bolo-laranja02.png", alt: "Bolo de Laranja" }
+      { type: "image", src: "/imgs/foto-bolo-laranja.png", alt: "Bolo de Laranja" },
+      { type: "image", src: "/imgs/foto-bolo-laranja02.png", alt: "Bolo de Laranja" },
       { type: "image", src: "/imgs/foto-bolo-laranja03.png", alt: "Bolo de Laranja" }
     ]
   }
