@@ -67,6 +67,7 @@ const TELEFONE = "5519992325682";
 
 // ----- Estado dos Carrosséis -----
 const carousels = {};
+const categoryPages = {};
 
 // ----- Renderiza HTML do Carrossel -----
 function renderCarousel(produto, cardId) {
@@ -360,14 +361,15 @@ function renderProdutos() {
     return `
       <div class="category-section">
         <h3 class="category-title">${categoria}</h3>
-        <div class="category-scroll-wrap">
-          <button class="category-arrow prev" onclick="scrollCategory('${rowId}', -1)" aria-label="Ver anteriores">
+        <div class="category-row" id="${rowId}">
+          ${cardsHtml}
+        </div>
+        <div class="category-nav" id="${rowId}-nav">
+          <span class="category-page-info" id="${rowId}-info"></span>
+          <button class="category-arrow prev" onclick="changeCategoryPage('${rowId}', -1)" aria-label="Página anterior">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
-          <div class="category-row" id="${rowId}">
-            ${cardsHtml}
-          </div>
-          <button class="category-arrow next" onclick="scrollCategory('${rowId}', 1)" aria-label="Ver próximos">
+          <button class="category-arrow next" onclick="changeCategoryPage('${rowId}', 1)" aria-label="Próxima página">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
           </button>
         </div>
@@ -379,85 +381,89 @@ function renderProdutos() {
     initCarousel(`card-${i}`, p.medias?.length || 1);
   });
 
-  // Inicializa comportamento das prateleiras (setas + arrastar)
   document.querySelectorAll('.category-row').forEach((row) => {
-    updateCategoryArrows(row.id);
-    row.addEventListener('scroll', () => updateCategoryArrows(row.id), { passive: true });
-    initDragScroll(row);
+    initCategoryPagination(row);
   });
 
   document.querySelectorAll(".card").forEach((el) => revealObserver.observe(el));
 }
 
-// ----- Seta: rola a prateleira da categoria para o lado -----
-function scrollCategory(rowId, dir) {
-  const row = document.getElementById(rowId);
-  if (!row) return;
-  const amount = row.clientWidth * 0.85;
-  row.scrollBy({ left: dir * amount, behavior: 'smooth' });
+function initCategoryPagination(row) {
+  const cards = Array.from(row.children);
+  cards.forEach((card, index) => {
+    card.dataset.itemIndex = index;
+  });
+  categoryPages[row.id] = { current: 0, totalPages: 1, pageSize: cards.length };
+  syncCategoryPagination(row.id);
 }
 
-// ----- Mostra/esconde e habilita/desabilita as setas conforme o scroll -----
-function updateCategoryArrows(rowId) {
+function changeCategoryPage(rowId, dir) {
+  const state = categoryPages[rowId];
+  if (!state) return;
+  const next = Math.min(Math.max(0, state.current + dir), state.totalPages - 1);
+  if (next === state.current) return;
+  state.current = next;
+  updateCategoryPage(rowId);
+}
+
+function syncCategoryPagination(rowId) {
   const row = document.getElementById(rowId);
   if (!row) return;
-  const wrap = row.closest('.category-scroll-wrap');
-  if (!wrap) return;
-  const prevBtn = wrap.querySelector('.category-arrow.prev');
-  const nextBtn = wrap.querySelector('.category-arrow.next');
-  if (!prevBtn || !nextBtn) return;
 
-  const maxScroll = row.scrollWidth - row.clientWidth;
+  const cards = Array.from(row.querySelectorAll('.card'));
+  const gapValue = parseInt(getComputedStyle(row).gap, 10) || 28;
+  const visibleWidth = row.clientWidth + gapValue;
+  const cardWidth = 280 + gapValue;
+  const columns = Math.max(1, Math.floor(visibleWidth / cardWidth));
+  const rowsPerPage = 2;
+  const pageSize = columns * rowsPerPage;
+  const totalPages = Math.max(1, Math.ceil(cards.length / pageSize));
 
-  if (maxScroll <= 4) {
-    // Cabe tudo na tela: não precisa de setas
-    prevBtn.classList.add('is-hidden');
-    nextBtn.classList.add('is-hidden');
-    return;
+  const state = categoryPages[rowId] || { current: 0 };
+  state.totalPages = totalPages;
+  state.pageSize = pageSize;
+  state.current = Math.min(state.current, totalPages - 1);
+  categoryPages[rowId] = state;
+
+  updateCategoryPage(rowId);
+}
+
+function updateCategoryPage(rowId) {
+  const row = document.getElementById(rowId);
+  if (!row) return;
+
+  const cards = Array.from(row.querySelectorAll('.card'));
+  const state = categoryPages[rowId];
+  if (!state) return;
+
+  const start = state.current * state.pageSize;
+  const end = start + state.pageSize;
+
+  cards.forEach((card, index) => {
+    card.style.display = index >= start && index < end ? '' : 'none';
+  });
+
+  const info = document.getElementById(`${rowId}-info`);
+  const prevBtn = document.querySelector(`#${rowId}-nav .category-arrow.prev`);
+  const nextBtn = document.querySelector(`#${rowId}-nav .category-arrow.next`);
+
+  if (info) {
+    info.textContent = `Página ${state.current + 1} de ${state.totalPages}`;
   }
 
-  prevBtn.classList.remove('is-hidden');
-  nextBtn.classList.remove('is-hidden');
-  prevBtn.disabled = row.scrollLeft <= 4;
-  nextBtn.disabled = row.scrollLeft >= maxScroll - 4;
+  if (prevBtn) prevBtn.disabled = state.current === 0;
+  if (nextBtn) nextBtn.disabled = state.current >= state.totalPages - 1;
+
+  const nav = document.getElementById(`${rowId}-nav`);
+  if (nav) {
+    nav.style.display = state.totalPages > 1 ? 'flex' : 'none';
+  }
 }
 
-// ----- Permite arrastar a prateleira com o mouse (clicar e arrastar) -----
-function initDragScroll(row) {
-  let isDown = false;
-  let startX = 0;
-  let startScroll = 0;
-  let moved = false;
-
-  row.addEventListener('mousedown', (e) => {
-    isDown = true;
-    moved = false;
-    row.classList.add('is-dragging');
-    startX = e.pageX;
-    startScroll = row.scrollLeft;
-  });
-
-  window.addEventListener('mouseup', () => {
-    isDown = false;
-    row.classList.remove('is-dragging');
-  });
-
-  window.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const diff = e.pageX - startX;
-    if (Math.abs(diff) > 5) moved = true;
-    row.scrollLeft = startScroll - diff;
-  });
-
-  // Evita que um "arrastar" vire clique acidental em um card/botão
-  row.addEventListener('click', (e) => {
-    if (moved) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-  }, true);
-}
+// ----- Sincroniza paginação de cada categoria ao redimensionar -----
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.category-row').forEach((row) => syncCategoryPagination(row.id));
+});
 
 // ----- Header scroll -----
 function handleScroll() {
@@ -489,7 +495,7 @@ document.addEventListener("DOMContentLoaded", () => {
   handleScroll();
 
   window.addEventListener("resize", () => {
-    document.querySelectorAll('.category-row').forEach((row) => updateCategoryArrows(row.id));
+    document.querySelectorAll('.category-row').forEach((row) => syncCategoryPagination(row.id));
   });
 
   const yearEl = document.getElementById("year");
