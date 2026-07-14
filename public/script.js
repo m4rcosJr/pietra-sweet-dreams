@@ -42,13 +42,15 @@ const produtos = [
   },
 
   {
-    nome: "Bolo no Pote Ninho com Nutella",
+    nome: "Bolo de Laranja com Cobertura de Limão",
     categoria: "Doces Sob Encomenda",
-    desc: "Camadas de bolo fofinho, creme de leite ninho e nutella. Feito na hora do seu pedido.",
+    desc: "Bolo de laranja macio e fofinho, coberto com uma deliciosa cobertura de limão, trazendo o equilíbrio perfeito entre o doce e o cítrico. Feito na hora do seu pedido.",
     preco: "R$ 14,00",
     unidade: "unidade",
     medias: [
-      { type: "image", src: "/imgs/foto-bolo-pote01.jpeg", alt: "Bolo no Pote Ninho com Nutella" }
+      { type: "image", src: "/imgs/foto-bolo-laranja.png", alt: "Bolo de Laranja" }
+      { type: "image", src: "/imgs/foto-bolo-laranja02.png", alt: "Bolo de Laranja" }
+      { type: "image", src: "/imgs/foto-bolo-laranja03.png", alt: "Bolo de Laranja" }
     ]
   }
 
