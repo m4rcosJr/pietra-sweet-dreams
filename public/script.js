@@ -9,10 +9,16 @@
 //   { type: "image", src: "/imgs/foto.jpg", alt: "Descrição" },
 //   { type: "video", src: "/imgs/video.mp4", thumb: "/imgs/thumb.jpg" }
 // ]
+//
+// NOVO: cada produto agora tem um campo "categoria".
+// Produtos com a mesma categoria são agrupados na mesma "prateleira".
+// Basta trocar/adicionar categorias novas que elas aparecem automaticamente
+// como novas seções no catálogo.
 
 const produtos = [
   {
     nome: "Brownie Tradicional",
+    categoria: "Doces Prontos",
     desc: "Chocolate, casquinha crocante e centro úmido e cremoso.",
     preco: "R$ 8,00",
     unidade: "unidade",
@@ -24,15 +30,37 @@ const produtos = [
 
   {
     nome: "Brownie de Doce de Leite",
+    categoria: "Doces Prontos",
     desc: "Por fora, uma casquinha delicadamente crocante. Por dentro, um recheio de doce de leite cremoso e cheio de sabor.",
     preco: "R$ 10,00",
     unidade: "unidade",
     medias: [
       { type: "image", src: "/imgs/foto-brownie-doceleite01.jpeg", alt: "Brownie Doce de Leite" },
       { type: "image", src: "/imgs/foto-brownie-doceleite02.jpeg", alt: "Brownie Doce de Leite" },
-      { type: "video", src: "imgs/video-brownie-doceleite.mp4", thumb:"/imgs/thumbdoceleite.png"}
+      { type: "video", src: "imgs/video-brownie-doceleite.mp4", thumb: "/imgs/thumbdoceleite.png" }
+    ]
+  },
+
+  {
+    nome: "Bolo no Pote Ninho com Nutella",
+    categoria: "Doces Sob Encomenda",
+    desc: "Camadas de bolo fofinho, creme de leite ninho e nutella. Feito na hora do seu pedido.",
+    preco: "R$ 14,00",
+    unidade: "unidade",
+    medias: [
+      { type: "image", src: "/imgs/foto-bolo-pote01.jpeg", alt: "Bolo no Pote Ninho com Nutella" }
     ]
   }
+
+  // Exemplo de como adicionar mais um item na mesma categoria "Doces Sob Encomenda":
+  // {
+  //   nome: "Torta de Morango",
+  //   categoria: "Doces Sob Encomenda",
+  //   desc: "...",
+  //   preco: "R$ 60,00",
+  //   unidade: "unidade",
+  //   medias: [ { type: "image", src: "/imgs/foto.jpg", alt: "Torta de Morango" } ]
+  // },
 ];
 
 const TELEFONE = "5519992325682";
@@ -169,7 +197,7 @@ function prevSlide(cardId) {
   goToSlide(cardId, (state.current - 1 + state.total) % state.total);
 }
 
-// ----- Swipe -----
+// ----- Swipe (dentro do carrossel de mídias do card) -----
 function initSwipe(cardId) {
   const carousel = document.getElementById(cardId);
   if (!carousel) return;
@@ -273,41 +301,162 @@ function createLightbox() {
   });
 }
 
-// ----- Renderiza catálogo -----
-function renderProdutos() {
-  const grid = document.getElementById("grid-produtos");
-  if (!grid) return;
+// ----- Renderiza um card individual (usado dentro de cada categoria) -----
+function renderCard(produto, prodIndex) {
+  const cardId = `card-${prodIndex}`;
+  const msg = encodeURIComponent(`Olá! Tenho interesse no ${produto.nome} da Pietra Doces.`);
+  const link = `https://wa.me/${TELEFONE}?text=${msg}`;
 
-  grid.innerHTML = produtos.map((p, i) => {
-    const cardId = `card-${i}`;
-    const msg = encodeURIComponent(`Olá! Tenho interesse no ${p.nome} da Pietra Doces.`);
-    const link = `https://wa.me/${TELEFONE}?text=${msg}`;
+  return `
+    <article class="card">
+      <div class="card-media-wrap">
+        ${renderCarousel(produto, cardId)}
+      </div>
+      <div class="card-body">
+        <h3>${produto.nome}</h3>
+        <p class="card-desc">${produto.desc}</p>
+        <div class="card-foot">
+          <div class="card-price">${produto.preco}<br><span>${produto.unidade}</span></div>
+          <a href="${link}" target="_blank" rel="noopener" class="btn-wa">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.4A10 10 0 1012 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.7-4.4-3.9-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.4.2.5.7 1.7.8 1.8.1.1.1.3 0 .4-.1.2-.1.3-.3.4-.1.2-.3.3-.4.5-.1.1-.3.3-.1.5.1.2.6 1 1.3 1.7.9.8 1.7 1.1 1.9 1.2.2.1.3.1.5-.1.1-.2.5-.6.7-.8.1-.2.3-.2.5-.1.2.1 1.4.7 1.6.8.2.1.4.2.4.3.1.2.1.6-.1 1.2z"/></svg>
+            Comprar
+          </a>
+        </div>
+      </div>
+    </article>`;
+}
+
+// ----- Agrupa produtos por categoria, preservando o índice original -----
+// (o índice original é o que o carrossel/lightbox usam para achar o produto certo)
+function agruparPorCategoria(lista) {
+  const grupos = new Map();
+  lista.forEach((produto, index) => {
+    const categoria = produto.categoria || "Outros Doces";
+    if (!grupos.has(categoria)) grupos.set(categoria, []);
+    grupos.get(categoria).push({ produto, index });
+  });
+  return grupos;
+}
+
+function slugify(str) {
+  return str
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
+// ----- Renderiza catálogo segmentado por categoria -----
+function renderProdutos() {
+  const container = document.getElementById("grid-produtos");
+  if (!container) return;
+
+  const grupos = agruparPorCategoria(produtos);
+
+  container.innerHTML = Array.from(grupos.entries()).map(([categoria, itens]) => {
+    const rowId = `row-${slugify(categoria)}`;
+    const cardsHtml = itens.map(({ produto, index }) => renderCard(produto, index)).join('');
 
     return `
-      <article class="card">
-        <div class="card-media-wrap">
-          ${renderCarousel(p, cardId)}
-        </div>
-        <div class="card-body">
-          <h3>${p.nome}</h3>
-          <p class="card-desc">${p.desc}</p>
-          <div class="card-foot">
-            <div class="card-price">${p.preco}<br><span>${p.unidade}</span></div>
-            <a href="${link}" target="_blank" rel="noopener" class="btn-wa">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.4A10 10 0 1012 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.7-4.4-3.9-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.4.2.5.7 1.7.8 1.8.1.1.1.3 0 .4-.1.2-.1.3-.3.4-.1.2-.3.3-.4.5-.1.1-.3.3-.1.5.1.2.6 1 1.3 1.7.9.8 1.7 1.1 1.9 1.2.2.1.3.1.5-.1.1-.2.5-.6.7-.8.1-.2.3-.2.5-.1.2.1 1.4.7 1.6.8.2.1.4.2.4.3.1.2.1.6-.1 1.2z"/></svg>
-              Comprar
-            </a>
+      <div class="category-section">
+        <h3 class="category-title">${categoria}</h3>
+        <div class="category-scroll-wrap">
+          <button class="category-arrow prev" onclick="scrollCategory('${rowId}', -1)" aria-label="Ver anteriores">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="category-row" id="${rowId}">
+            ${cardsHtml}
           </div>
+          <button class="category-arrow next" onclick="scrollCategory('${rowId}', 1)" aria-label="Ver próximos">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
         </div>
-      </article>`;
+      </div>`;
   }).join("");
 
-  // Inicializa todos os carrosséis
+  // Inicializa todos os carrosséis de mídia dos cards
   produtos.forEach((p, i) => {
     initCarousel(`card-${i}`, p.medias?.length || 1);
   });
 
+  // Inicializa comportamento das prateleiras (setas + arrastar)
+  document.querySelectorAll('.category-row').forEach((row) => {
+    updateCategoryArrows(row.id);
+    row.addEventListener('scroll', () => updateCategoryArrows(row.id), { passive: true });
+    initDragScroll(row);
+  });
+
   document.querySelectorAll(".card").forEach((el) => revealObserver.observe(el));
+}
+
+// ----- Seta: rola a prateleira da categoria para o lado -----
+function scrollCategory(rowId, dir) {
+  const row = document.getElementById(rowId);
+  if (!row) return;
+  const amount = row.clientWidth * 0.85;
+  row.scrollBy({ left: dir * amount, behavior: 'smooth' });
+}
+
+// ----- Mostra/esconde e habilita/desabilita as setas conforme o scroll -----
+function updateCategoryArrows(rowId) {
+  const row = document.getElementById(rowId);
+  if (!row) return;
+  const wrap = row.closest('.category-scroll-wrap');
+  if (!wrap) return;
+  const prevBtn = wrap.querySelector('.category-arrow.prev');
+  const nextBtn = wrap.querySelector('.category-arrow.next');
+  if (!prevBtn || !nextBtn) return;
+
+  const maxScroll = row.scrollWidth - row.clientWidth;
+
+  if (maxScroll <= 4) {
+    // Cabe tudo na tela: não precisa de setas
+    prevBtn.classList.add('is-hidden');
+    nextBtn.classList.add('is-hidden');
+    return;
+  }
+
+  prevBtn.classList.remove('is-hidden');
+  nextBtn.classList.remove('is-hidden');
+  prevBtn.disabled = row.scrollLeft <= 4;
+  nextBtn.disabled = row.scrollLeft >= maxScroll - 4;
+}
+
+// ----- Permite arrastar a prateleira com o mouse (clicar e arrastar) -----
+function initDragScroll(row) {
+  let isDown = false;
+  let startX = 0;
+  let startScroll = 0;
+  let moved = false;
+
+  row.addEventListener('mousedown', (e) => {
+    isDown = true;
+    moved = false;
+    row.classList.add('is-dragging');
+    startX = e.pageX;
+    startScroll = row.scrollLeft;
+  });
+
+  window.addEventListener('mouseup', () => {
+    isDown = false;
+    row.classList.remove('is-dragging');
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const diff = e.pageX - startX;
+    if (Math.abs(diff) > 5) moved = true;
+    row.scrollLeft = startScroll - diff;
+  });
+
+  // Evita que um "arrastar" vire clique acidental em um card/botão
+  row.addEventListener('click', (e) => {
+    if (moved) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
 }
 
 // ----- Header scroll -----
@@ -338,6 +487,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
   window.addEventListener("scroll", handleScroll, { passive: true });
   handleScroll();
+
+  window.addEventListener("resize", () => {
+    document.querySelectorAll('.category-row').forEach((row) => updateCategoryArrows(row.id));
+  });
 
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();

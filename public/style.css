@@ -696,3 +696,119 @@ em { font-style: italic; color: var(--gold); font-weight: 500; }
   .lb-next { right: 8px; }
   .carousel-arrow { width: 28px; height: 28px; }
 }
+
+/* =========================================================
+   NOVO — Catálogo segmentado por categoria
+   Prateleiras de 2 linhas com scroll horizontal e setas
+========================================================= */
+
+/* O container que antes era um grid de cards agora vira um
+   empilhado vertical de seções (uma por categoria) */
+#grid-produtos {
+  display: block;
+}
+
+.category-section {
+  margin-bottom: 64px;
+}
+.category-section:last-child {
+  margin-bottom: 0;
+}
+
+.category-title {
+  font-size: 1.7rem;
+  margin-bottom: 24px;
+  padding-left: 2px;
+}
+
+.category-scroll-wrap {
+  position: relative;
+}
+
+/* Prateleira: grid de 2 linhas, colunas geradas automaticamente,
+   rolando na horizontal. Quando os cards não cabem todos na
+   largura da tela, o excedente vira uma 2ª linha por baixo e
+   scroll lateral para ver o resto. */
+.category-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  grid-auto-columns: 280px;
+  gap: 28px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  padding: 4px 4px 16px;
+  scrollbar-width: none;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+}
+.category-row::-webkit-scrollbar {
+  display: none;
+}
+.category-row.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+.category-row .card {
+  scroll-snap-align: start;
+  width: 280px;
+}
+
+/* Setas de navegação da prateleira */
+.category-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  background: rgba(248, 243, 237, 0.95);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all 0.25s ease;
+  color: var(--brown);
+}
+.category-arrow:hover {
+  background: var(--gold);
+  transform: translateY(-50%) scale(1.08);
+}
+.category-arrow.prev {
+  left: -22px;
+}
+.category-arrow.next {
+  right: -22px;
+}
+.category-arrow[disabled] {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+.category-arrow.is-hidden {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .category-arrow.prev { left: -8px; }
+  .category-arrow.next { right: -8px; }
+}
+
+@media (max-width: 640px) {
+  /* No mobile o toque/arraste nativo já resolve; as setas ficam
+     no caminho do dedo, então escondemos e deixamos só o swipe. */
+  .category-arrow {
+    display: none;
+  }
+  .category-row {
+    grid-auto-columns: 78vw;
+    gap: 16px;
+  }
+  .category-row .card {
+    width: 78vw;
+  }
+}
