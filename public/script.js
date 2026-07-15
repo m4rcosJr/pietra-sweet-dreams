@@ -35,7 +35,10 @@ const produtos = [
     preco: "R$ 11,99",
     unidade: "unidade",
     medias: [
-      { type: "image", src: "/imgs/foto-brownie-coco.png", alt: "Brownie Coco" }
+      { type: "image", src: "/imgs/foto-brownie-coco.png", alt: "Brownie Coco" },
+      { type: "image", src: "/imgs/foto-brownie-coco02.png", alt: "Brownie Coco" },
+      { type: "image", src: "/imgs/foto-brownie-coco03.png", alt: "Brownie Coco" },
+      { type: "image", src: "/imgs/foto-brownie-coco04.png", alt: "Brownie Coco" }
     ]
   },
   
