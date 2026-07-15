@@ -421,10 +421,10 @@ function renderProdutos() {
         </div>
         <div class="category-nav" id="${rowId}-nav">
           <span class="category-page-info" id="${rowId}-info"></span>
-          <button type="button" class="category-arrow prev" onclick="changeCategoryPage(event, '${rowId}', -1)" aria-label="Página anterior">
+          <button type="button" class="category-arrow prev" data-row-id="${rowId}" data-dir="-1" aria-label="Página anterior">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
-          <button type="button" class="category-arrow next" onclick="changeCategoryPage(event, '${rowId}', 1)" aria-label="Próxima página">
+          <button type="button" class="category-arrow next" data-row-id="${rowId}" data-dir="1" aria-label="Próxima página">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
           </button>
         </div>
@@ -452,18 +452,25 @@ function initCategoryPagination(row) {
   syncCategoryPagination(row.id);
 }
 
-function changeCategoryPage(event, rowId, dir) {
-  if (event && typeof event.preventDefault === 'function') {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
+function changeCategoryPage(rowId, dir) {
   const state = categoryPages[rowId];
   if (!state) return;
   const next = Math.min(Math.max(0, state.current + dir), state.totalPages - 1);
   if (next === state.current) return;
   state.current = next;
   updateCategoryPage(rowId);
+}
+
+function bindCategoryButtons() {
+  document.querySelectorAll('.category-arrow[data-row-id]').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const rowId = button.dataset.rowId;
+      const dir = Number(button.dataset.dir) || 0;
+      changeCategoryPage(rowId, dir);
+    });
+  });
 }
 
 function syncCategoryPagination(rowId) {
@@ -557,6 +564,8 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", () => {
     document.querySelectorAll('.category-row').forEach((row) => syncCategoryPagination(row.id));
   });
+
+  bindCategoryButtons();
 
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
