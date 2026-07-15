@@ -333,7 +333,7 @@ function createLightbox() {
 // ----- Renderiza um card individual (usado dentro de cada categoria) -----
 function renderCard(produto, prodIndex) {
   const cardId = `card-${prodIndex}`;
-  const msg = encodeURIComponent(`Olá! Tenho interesse no ${produto.nome} da Pietra Doces.`);
+  const msg = encodeURIComponent(`Olá! Tenho interesse no ${produto.nome} da Pietrà Doces.`);
   const link = `https://wa.me/${TELEFONE}?text=${msg}`;
 
   return `
