@@ -27,12 +27,23 @@ const produtos = [
       { type: "image", src: "/imgs/foto-brownie01.png", alt: "Brownie Tradicional" }
     ]
   },
+
+  {
+    nome: "Brownie de Prestígio",
+    categoria: "Doces Prontos",
+    desc: "Brownie de prestígio, com aquela casquinha crocante por fora e um centro super úmido e cremoso, combinado com um recheio generoso de coco. Feito na hora do seu pedido.",
+    preco: "R$ 11,99",
+    unidade: "unidade",
+    medias: [
+      { type: "image", src: "/imgs/foto-brownie-coco.png", alt: "Brownie Coco" }
+    ]
+  },
   
   {
     nome: "Brownie de Doce de Leite",
     categoria: "Doces Prontos",
     desc: "Por fora, uma casquinha delicadamente crocante. Por dentro, um recheio de doce de leite cremoso e cheio de sabor.",
-    preco: "R$ 10,00",
+    preco: "R$ 10,99",
     unidade: "unidade",
     medias: [
       { type: "image", src: "/imgs/foto-brownie-doceleite01.jpeg", alt: "Brownie Doce de Leite" },
@@ -45,12 +56,24 @@ const produtos = [
     nome: "Bolo de Laranja com Cobertura de Limão",
     categoria: "Doces Sob Encomenda",
     desc: "Bolo de laranja macio e fofinho, coberto com uma deliciosa cobertura de limão, trazendo o equilíbrio perfeito entre o doce e o cítrico. Feito na hora do seu pedido.",
-    preco: "R$ 14,00",
+    preco: "R$ 65,00",
     unidade: "unidade",
     medias: [
       { type: "image", src: "/imgs/foto-bolo-laranja.png", alt: "Bolo de Laranja" },
       { type: "image", src: "/imgs/foto-bolo-laranja02.png", alt: "Bolo de Laranja" },
       { type: "image", src: "/imgs/foto-bolo-laranja03.png", alt: "Bolo de Laranja" }
+    ]
+  },
+
+   {
+    nome: "Bombom de Morango na Travessa",
+    categoria: "Doces Sob Encomenda",
+    desc: "Bombom de morango na travessa, combinando a doçura do creme e do chocolate com o frescor cítrico do morango. Montado em camadas perfeitas e feito na hora do seu pedido.",
+    preco: "R$ 80,00",
+    unidade: "unidade",
+    medias: [
+      { type: "image", src: "/imgs/bombom-morango.jpeg", alt: "Bombom de Morango"},
+      { type: "image", src: "/imgs/bombom-morango02.jpeg", alt: "Bolo de Laranja" }
     ]
   }
 
