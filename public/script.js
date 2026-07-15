@@ -101,7 +101,7 @@ const produtos = [
     unidade: "unidade",
     medias: [
       { type: "image", src: "/imgs/foto-bombom-uva.png", alt: "Bombom de Uva"},
-      { type: "image", src: "/imgs/foto-  bombom-uva02.png", alt: "Bombom de Uva" }
+      { type: "image", src: "/imgs/foto-bombom-uva02.png", alt: "Bombom de Uva" }
     ]
   }
 
@@ -410,10 +410,12 @@ function renderProdutos() {
   container.innerHTML = Array.from(grupos.entries()).map(([categoria, itens]) => {
     const rowId = `row-${slugify(categoria)}`;
     const cardsHtml = itens.map(({ produto, index }) => renderCard(produto, index)).join('');
+    const noteHtml = categoria === "Doces Sob Encomenda" ? '<p class="category-note">(Para Doces Sob Encomendas, pedidos com 24h de antecedência)</p>' : '';
 
     return `
       <div class="category-section">
         <h3 class="category-title">${categoria}</h3>
+        ${noteHtml}
         <div class="category-row" id="${rowId}">
           ${cardsHtml}
         </div>
