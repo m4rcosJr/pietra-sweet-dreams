@@ -789,11 +789,6 @@ em { font-style: italic; color: var(--gold); font-weight: 500; }
 }
 
 @media (max-width: 640px) {
-  /* No mobile o toque/arraste nativo já resolve; as setas ficam
-     no caminho do dedo, então escondemos e deixamos só o swipe. */
-  .category-arrow {
-    display: none;
-  }
   .category-row {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 18px;
