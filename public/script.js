@@ -463,12 +463,17 @@ function changeCategoryPage(rowId, dir) {
 
 function bindCategoryButtons() {
   document.querySelectorAll('.category-arrow[data-row-id]').forEach((button) => {
+    button.addEventListener('mousedown', (event) => {
+      event.preventDefault();
+    });
+
     button.addEventListener('click', (event) => {
       event.preventDefault();
       event.stopPropagation();
       const rowId = button.dataset.rowId;
       const dir = Number(button.dataset.dir) || 0;
       changeCategoryPage(rowId, dir);
+      button.blur();
     });
   });
 }
