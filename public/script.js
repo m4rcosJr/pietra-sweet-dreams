@@ -68,6 +68,19 @@ const produtos = [
     ]
   },
 
+  {
+    nome: "Bolo de Chocolate Granulado",
+    categoria: "Doces Sob Encomenda",
+    desc: "Bolo de chocolate super fofinho e úmido, coberto com uma calda cremosa e brilhante de chocolate e finalizado com muito granulado crocante. Feito na hora do seu pedido.",
+    preco: "R$ 70,00",
+    unidade: "unidade",
+    medias: [
+      { type: "image", src: "/imgs/foto-bolo-chocolate.png", alt: "Bolo de Chocolate" },
+      { type: "image", src: "/imgs/foto-bolo-chocolate02.png", alt: "Bolo de Chocolate" },
+      { type: "image", src: "/imgs/foto-bolo-chocolate03.png", alt: "Bolo de Chocolate" }
+    ]
+  },
+
    {
     nome: "Bombom de Morango na Travessa",
     categoria: "Doces Sob Encomenda",
@@ -76,7 +89,19 @@ const produtos = [
     unidade: "unidade",
     medias: [
       { type: "image", src: "/imgs/bombom-morango.jpeg", alt: "Bombom de Morango"},
-      { type: "image", src: "/imgs/bombom-morango02.jpeg", alt: "Bolo de Laranja" }
+      { type: "image", src: "/imgs/bombom-morango02.jpeg", alt: "Bombom de Morango" }
+    ]
+  },
+
+  {
+    nome: "Bombom de Uva na Travessa",
+    categoria: "Doces Sob Encomenda",
+    desc: "Bombom de morango na travessa, combinando a doçura do creme e do chocolate com o frescor cítrico do morango. Montado em camadas perfeitas e feito na hora do seu pedido.",
+    preco: "R$ 80,00",
+    unidade: "unidade",
+    medias: [
+      { type: "image", src: "/imgs/bombom-uva.png", alt: "Bombom de Uva"},
+      { type: "image", src: "/imgs/bombom-uva02.png", alt: "Bolo de Uva" }
     ]
   }
 

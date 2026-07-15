@@ -361,6 +361,10 @@ em { font-style: italic; color: var(--gold); font-weight: 500; }
   transition: color 0.25s ease;
 }
 .footer a:hover { color: var(--gold-light); }
+.footer small {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
 .footer-bottom {
   text-align: center;
   padding-top: 24px;
