@@ -77,7 +77,7 @@ const produtos = [
     medias: [
       { type: "image", src: "/imgs/foto-bolo-chocolate.png", alt: "Bolo de Chocolate" },
       { type: "image", src: "/imgs/foto-bolo-chocolate02.png", alt: "Bolo de Chocolate" },
-      { type: "image", src: "/imgs/foto-bolo-chocolate03.png", alt: "Bolo de Chocolate" }
+      { type: "image", src: "/imgs/foto-bolo-chocolate03.jpeg", alt: "Bolo de Chocolate" }
     ]
   },
 
@@ -100,8 +100,8 @@ const produtos = [
     preco: "R$ 80,00",
     unidade: "unidade",
     medias: [
-      { type: "image", src: "/imgs/bombom-uva.png", alt: "Bombom de Uva"},
-      { type: "image", src: "/imgs/bombom-uva02.png", alt: "Bolo de Uva" }
+      { type: "image", src: "/imgs/foto-bombom-uva.png", alt: "Bombom de Uva"},
+      { type: "image", src: "/imgs/foto-  bombom-uva02.png", alt: "Bombom de Uva" }
     ]
   }
 
