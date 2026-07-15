@@ -421,10 +421,10 @@ function renderProdutos() {
         </div>
         <div class="category-nav" id="${rowId}-nav">
           <span class="category-page-info" id="${rowId}-info"></span>
-          <button class="category-arrow prev" onclick="changeCategoryPage('${rowId}', -1)" aria-label="Página anterior">
+          <button type="button" class="category-arrow prev" onclick="changeCategoryPage('${rowId}', -1)" aria-label="Página anterior">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
-          <button class="category-arrow next" onclick="changeCategoryPage('${rowId}', 1)" aria-label="Próxima página">
+          <button type="button" class="category-arrow next" onclick="changeCategoryPage('${rowId}', 1)" aria-label="Próxima página">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
           </button>
         </div>
