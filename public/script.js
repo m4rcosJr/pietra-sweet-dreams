@@ -421,10 +421,10 @@ function renderProdutos() {
         </div>
         <div class="category-nav" id="${rowId}-nav">
           <span class="category-page-info" id="${rowId}-info"></span>
-          <button type="button" class="category-arrow prev" onclick="changeCategoryPage('${rowId}', -1)" aria-label="Página anterior">
+          <button type="button" class="category-arrow prev" onclick="changeCategoryPage(event, '${rowId}', -1)" aria-label="Página anterior">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
-          <button type="button" class="category-arrow next" onclick="changeCategoryPage('${rowId}', 1)" aria-label="Próxima página">
+          <button type="button" class="category-arrow next" onclick="changeCategoryPage(event, '${rowId}', 1)" aria-label="Próxima página">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
           </button>
         </div>
@@ -452,7 +452,12 @@ function initCategoryPagination(row) {
   syncCategoryPagination(row.id);
 }
 
-function changeCategoryPage(rowId, dir) {
+function changeCategoryPage(event, rowId, dir) {
+  if (event && typeof event.preventDefault === 'function') {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   const state = categoryPages[rowId];
   if (!state) return;
   const next = Math.min(Math.max(0, state.current + dir), state.totalPages - 1);
