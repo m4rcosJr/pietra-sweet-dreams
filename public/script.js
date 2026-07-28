@@ -47,7 +47,7 @@ const produtos = [
     categoria: "Doces Prontos",
     desc: "Por fora, uma casquinha delicadamente crocante. Por dentro, um recheio de doce de leite cremoso e cheio de sabor.",
     preco: "R$ 10,99",
-    unidade: "unidade",
+    unidade: "Unidade",
     medias: [
       { type: "image", src: "/imgs/foto-brownie-doceleite01.jpeg", alt: "Brownie Doce de Leite" },
       { type: "image", src: "/imgs/foto-brownie-doceleite02.jpeg", alt: "Brownie Doce de Leite" },
@@ -60,7 +60,7 @@ const produtos = [
     categoria: "Doces Sob Encomenda",
     desc: "Bolo de laranja macio e fofinho, coberto com uma deliciosa cobertura de limão, trazendo o equilíbrio perfeito entre o doce e o cítrico. Feito na hora do seu pedido.",
     preco: "R$ 65,99",
-    unidade: "24cm",
+    unidade: "Aprox. 24cm",
     medias: [
       { type: "image", src: "/imgs/foto-bolo-laranja.png", alt: "Bolo de Laranja" },
       { type: "image", src: "/imgs/foto-bolo-laranja02.png", alt: "Bolo de Laranja" },
@@ -73,7 +73,7 @@ const produtos = [
     categoria: "Doces Sob Encomenda",
     desc: "Bolo de chocolate super fofinho e úmido, coberto com uma calda cremosa e brilhante de chocolate e finalizado com muito granulado crocante. Feito na hora do seu pedido.",
     preco: "R$ 69,99",
-    unidade: "24cm",
+    unidade: "Aprox. 24cm",
     medias: [
       { type: "image", src: "/imgs/foto-bolo-chocolate.png", alt: "Bolo de Chocolate" },
       { type: "image", src: "/imgs/foto-bolo-chocolate02.png", alt: "Bolo de Chocolate" },
