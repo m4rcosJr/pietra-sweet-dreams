@@ -20,8 +20,8 @@ const produtos = [
     nome: "Brownie Tradicional",
     categoria: "Doces Prontos",
     desc: "Chocolate, casquinha crocante e centro úmido e cremoso.",
-    preco: "R$ 8,00",
-    unidade: "unidade",
+    preco: "R$ 8,99",
+    unidade: "Unidade",
     medias: [
       { type: "image", src: "/imgs/foto-brownie02.jpeg", alt: "Brownie Tradicional" },
       { type: "image", src: "/imgs/foto-brownie01.png", alt: "Brownie Tradicional" }
@@ -33,7 +33,7 @@ const produtos = [
     categoria: "Doces Prontos",
     desc: "Brownie de prestígio, com aquela casquinha crocante por fora e um centro super úmido e cremoso, combinado com um recheio generoso de coco. Feito na hora do seu pedido.",
     preco: "R$ 11,99",
-    unidade: "unidade",
+    unidade: "Unidade",
     medias: [
       { type: "image", src: "/imgs/foto-brownie-coco.png", alt: "Brownie Coco" },
       { type: "image", src: "/imgs/foto-brownie-coco02.png", alt: "Brownie Coco" },
@@ -59,8 +59,8 @@ const produtos = [
     nome: "Bolo de Laranja com Cobertura de Limão",
     categoria: "Doces Sob Encomenda",
     desc: "Bolo de laranja macio e fofinho, coberto com uma deliciosa cobertura de limão, trazendo o equilíbrio perfeito entre o doce e o cítrico. Feito na hora do seu pedido.",
-    preco: "R$ 65,00",
-    unidade: "unidade",
+    preco: "R$ 65,99",
+    unidade: "24cm",
     medias: [
       { type: "image", src: "/imgs/foto-bolo-laranja.png", alt: "Bolo de Laranja" },
       { type: "image", src: "/imgs/foto-bolo-laranja02.png", alt: "Bolo de Laranja" },
@@ -72,8 +72,8 @@ const produtos = [
     nome: "Bolo de Chocolate Granulado",
     categoria: "Doces Sob Encomenda",
     desc: "Bolo de chocolate super fofinho e úmido, coberto com uma calda cremosa e brilhante de chocolate e finalizado com muito granulado crocante. Feito na hora do seu pedido.",
-    preco: "R$ 70,00",
-    unidade: "unidade",
+    preco: "R$ 69,99",
+    unidade: "24cm",
     medias: [
       { type: "image", src: "/imgs/foto-bolo-chocolate.png", alt: "Bolo de Chocolate" },
       { type: "image", src: "/imgs/foto-bolo-chocolate02.png", alt: "Bolo de Chocolate" },
@@ -86,7 +86,7 @@ const produtos = [
     categoria: "Doces Sob Encomenda",
     desc: "Bombom de morango na travessa, combinando a doçura do creme e do chocolate com o frescor cítrico do morango. Montado em camadas perfeitas e feito na hora do seu pedido.",
     preco: "R$ 80,00",
-    unidade: "unidade",
+    unidade: "Aprox. 1,7kg",
     medias: [
       { type: "image", src: "/imgs/bombom-morango.jpeg", alt: "Bombom de Morango"},
       { type: "image", src: "/imgs/bombom-morango02.jpeg", alt: "Bombom de Morango" }
@@ -98,7 +98,7 @@ const produtos = [
     categoria: "Doces Sob Encomenda",
     desc: "Bombom de morango na travessa, combinando a doçura do creme e do chocolate com o frescor cítrico do morango. Montado em camadas perfeitas e feito na hora do seu pedido.",
     preco: "R$ 80,00",
-    unidade: "unidade",
+    unidade: "Aprox. 1,7kg",
     medias: [
       { type: "image", src: "/imgs/foto-bombom-uva.png", alt: "Bombom de Uva"},
       { type: "image", src: "/imgs/foto-bombom-uva02.png", alt: "Bombom de Uva" }
