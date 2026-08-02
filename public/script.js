@@ -20,7 +20,7 @@ const produtos = [
     nome: "Brownie Tradicional",
     categoria: "Doces Prontos",
     desc: "Chocolate, casquinha crocante e centro úmido e cremoso.",
-    preco: "R$ 8,99",
+    preco: "R$ 8,00",
     unidade: "Unidade",
     medias: [
       { type: "image", src: "/imgs/foto-brownie02.jpeg", alt: "Brownie Tradicional" },
@@ -32,7 +32,7 @@ const produtos = [
     nome: "Brownie de Prestígio",
     categoria: "Doces Prontos",
     desc: "Brownie de prestígio, com aquela casquinha crocante por fora e um centro super úmido e cremoso, combinado com um recheio generoso de coco. Feito na hora do seu pedido.",
-    preco: "R$ 11,99",
+    preco: "R$ 12,00",
     unidade: "Unidade",
     medias: [
       { type: "image", src: "/imgs/foto-brownie-coco.png", alt: "Brownie Coco" },
@@ -46,7 +46,7 @@ const produtos = [
     nome: "Brownie de Doce de Leite",
     categoria: "Doces Prontos",
     desc: "Por fora, uma casquinha delicadamente crocante. Por dentro, um recheio de doce de leite cremoso e cheio de sabor.",
-    preco: "R$ 10,99",
+    preco: "R$ 10,00",
     unidade: "Unidade",
     medias: [
       { type: "image", src: "/imgs/foto-brownie-doceleite01.jpeg", alt: "Brownie Doce de Leite" },
