@@ -62,10 +62,10 @@ const produtos = [
     preco: "R$ 10,00",
     unidade: "Unidade",
     medias: [
-      { type: "image", src: "/imgs/foto-brownie-chocolate.png", alt: "Brownie de Chocolate" },
+      { type: "image", src: "/imgs/foto-brownie-chocolate.jpeg", alt: "Brownie de Chocolate" },
       { type: "image", src: "/imgs/foto-brownie-chocolate02.png", alt: "Brownie de Chocolate" },
       { type: "image", src: "/imgs/foto-brownie-chocolate03.png", alt: "Brownie de Chocolate" },
-      { type: "image", src: "/imgs/foto-brownie-chocolate04.png", alt: "Brownie de Chocolate" },
+      { type: "image", src: "/imgs/foto-brownie-chocolate04.jpg", alt: "Brownie de Chocolate" },
       { type: "video", src: "imgs/video-brownie-chocolate.mp4", thumb: "/imgs/foto-brownie-chocolate03.png" }
     ]
   },
