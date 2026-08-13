@@ -18,7 +18,7 @@
 const produtos = [
   {
     nome: "Brownie Tradicional",
-    categoria: "Doces Prontos",
+    categoria: "Doces Sob Encomenda",
     desc: "Chocolate, casquinha crocante e centro úmido e cremoso.",
     preco: "R$ 8,00",
     unidade: "Unidade",
@@ -30,7 +30,7 @@ const produtos = [
 
   {
     nome: "Brownie de Prestígio",
-    categoria: "Doces Prontos",
+    categoria: "Doces Sob Encomenda",
     desc: "Brownie de prestígio, com aquela casquinha crocante por fora e um centro super úmido e cremoso, combinado com um recheio generoso de coco. Feito na hora do seu pedido.",
     preco: "R$ 12,00",
     unidade: "Unidade",
@@ -44,7 +44,7 @@ const produtos = [
   
   {
     nome: "Brownie de Doce de Leite",
-    categoria: "Doces Prontos",
+    categoria: "Doces Sob Encomenda",
     desc: "Por fora, uma casquinha delicadamente crocante. Por dentro, um recheio de doce de leite cremoso e cheio de sabor.",
     preco: "R$ 10,00",
     unidade: "Unidade",
@@ -52,6 +52,21 @@ const produtos = [
       { type: "image", src: "/imgs/foto-brownie-doceleite01.jpeg", alt: "Brownie Doce de Leite" },
       { type: "image", src: "/imgs/foto-brownie-doceleite02.jpeg", alt: "Brownie Doce de Leite" },
       { type: "video", src: "imgs/video-brownie-doceleite.mp4", thumb: "/imgs/thumbdoceleite.png" }
+    ]
+  },
+
+  {
+    nome: "Brownie de Doce de Chocolate",
+    categoria: "Doces Sob Encomenda",
+    desc: "Por fora, uma casquinha levemente crocante. Por dentro, uma massa macia, úmida e intensamente chocolatuda, com o sabor marcante do chocolate em cada mordida. Uma combinação simples, irresistível e perfeita para os amantes de chocolate.",
+    preco: "R$ 10,00",
+    unidade: "Unidade",
+    medias: [
+      { type: "image", src: "/imgs/foto-brownie-chocolate.png", alt: "Brownie de Chocolate" },
+      { type: "image", src: "/imgs/foto-brownie-chocolate02.png", alt: "Brownie de Chocolate" },
+      { type: "image", src: "/imgs/foto-brownie-chocolate03.png", alt: "Brownie de Chocolate" },
+      { type: "image", src: "/imgs/foto-brownie-chocolate04.png", alt: "Brownie de Chocolate" },
+      { type: "video", src: "imgs/video-brownie-chocolate.mp4", thumb: "/imgs/foto-brownie-chocolate03.png" }
     ]
   },
 
