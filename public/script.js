@@ -111,7 +111,7 @@ const produtos = [
   {
     nome: "Bombom de Uva na Travessa",
     categoria: "Doces Sob Encomenda",
-    desc: "Bombom de morango na travessa, combinando a doçura do creme e do chocolate com o frescor cítrico do morango. Montado em camadas perfeitas e feito na hora do seu pedido.",
+    desc: "Bombom de uva na travessa, combinando a doçura do creme e do chocolate. Montado em camadas perfeitas e feito na hora do seu pedido.",
     preco: "R$ 80,00",
     unidade: "Aprox. 1,7kg",
     medias: [
