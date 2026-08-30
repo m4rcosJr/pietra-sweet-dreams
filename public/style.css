@@ -737,8 +737,7 @@ em { font-style: italic; color: var(--gold); font-weight: 500; }
 
 .category-row .card {
   width: 100%;
-  max-width: 280px;
-  margin: 0 auto;
+  max-width: 380px;
 }
 
 .category-nav {
