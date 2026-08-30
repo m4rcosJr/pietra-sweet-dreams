@@ -56,7 +56,7 @@ const produtos = [
   },
 
   {
-    nome: "Brownie de Doce de Brigadeiro",
+    nome: "Brownie de Brigadeiro",
     categoria: "Doces Sob Encomenda",
     desc: "Por fora, uma casquinha levemente crocante. Por dentro, uma massa macia, úmida e intensamente chocolatuda, combinada com um delicioso brigadeiro cremoso que deixa cada mordida ainda mais irresistível. Uma combinação perfeita para quem ama brownie e brigadeiro.",
     preco: "R$ 10,00",
