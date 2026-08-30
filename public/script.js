@@ -56,9 +56,9 @@ const produtos = [
   },
 
   {
-    nome: "Brownie de Doce de Chocolate",
+    nome: "Brownie de Doce de Brigadeiro",
     categoria: "Doces Sob Encomenda",
-    desc: "Por fora, uma casquinha levemente crocante. Por dentro, uma massa macia, úmida e intensamente chocolatuda, com o sabor marcante do chocolate em cada mordida. Uma combinação simples, irresistível e perfeita para os amantes de chocolate.",
+    desc: "Por fora, uma casquinha levemente crocante. Por dentro, uma massa macia, úmida e intensamente chocolatuda, combinada com um delicioso brigadeiro cremoso que deixa cada mordida ainda mais irresistível. Uma combinação perfeita para quem ama brownie e brigadeiro.",
     preco: "R$ 10,00",
     unidade: "Unidade",
     medias: [
@@ -503,7 +503,9 @@ function syncCategoryPagination(rowId) {
   const cardWidth = 280 + gapValue;
   const columns = Math.max(1, Math.floor(visibleWidth / cardWidth));
   const rowsPerPage = 2;
-  const pageSize = columns * rowsPerPage;
+  // No celular (1 coluna), não pagina: mostra a categoria inteira,
+  // rolando verticalmente como uma lista normal — sem "Página X de Y".
+  const pageSize = columns <= 1 ? cards.length : columns * rowsPerPage;
   const totalPages = Math.max(1, Math.ceil(cards.length / pageSize));
 
   const state = categoryPages[rowId] || { current: 0 };
